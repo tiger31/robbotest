@@ -31,11 +31,13 @@ class RobboTestXBlock(XBlock):
         The primary view of the RobboTestXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/robbotest.html")
+        html = self.resource_string("static/html/test.html")
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/robbotest.css"))
-        frag.add_javascript(self.resource_string("static/js/src/robbotest.js"))
-        frag.initialize_js('RobboTestXBlock')
+        frag.add_css(self.resource_string("static/css/test.css"))
+        frag.add_javascript(self.resource_string("static/js/src/test.js"))
+        frag.initialize_js('TestXBlock')
+
+        #frag.initialize_js('RobboTestXBlock')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
