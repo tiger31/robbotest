@@ -20,6 +20,13 @@ class RobboTestXBlock(XBlock):
         help="A simple counter, to show something happening",
     )
 
+    answer = Integer(
+        scope=Scope.settings,
+        default=0, help="Question answer",
+    )
+
+
+
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
@@ -42,16 +49,16 @@ class RobboTestXBlock(XBlock):
 
     # TO-DO: change this handler to perform your own actions.  You may need more
     # than one handler, or you may not need any handlers at all.
-    @XBlock.json_handler
-    def increment_count(self, data, suffix=''):
-        """
-        An example handler, which increments the data.
-        """
-        # Just to show data coming in...
-        assert data['hello'] == 'world'
+     @XBlock.json_handler
+       def increment_count(self, data, suffix=''):
+           """
+           An example handler, which increments the data.
+           """
+           # Just to show data coming in...
+           assert data['answer'] == self.answer
 
-        self.count += 1
-        return {"count": self.count}
+           self.count += 1
+           return {"count": self.count}
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
