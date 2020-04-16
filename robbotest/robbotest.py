@@ -41,10 +41,26 @@ class RobboTestXBlock(XBlock):
         html = self.resource_string("static/html/test.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/test.css"))
+        frag.add_javascript(self.resource_string("static/js/src/vue.runtime.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/vue-foo.min.js"))
         frag.add_javascript(self.resource_string("static/js/src/test.js"))
         frag.initialize_js('TestXBlock')
 
         #frag.initialize_js('RobboTestXBlock')
+        return frag
+
+    def studio_view(self, context=None):
+        """
+        The primary view of the TestXBlock, shown to students
+        when viewing courses.
+        """
+        html = self.resource_string("static/html/test.html")
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/test.css"))
+        frag.add_javascript(self.resource_string("static/js/src/vue.runtime.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/vue-foo.min.js"))
+        frag.add_javascript(self.resource_string("static/js/src/test.js"))
+        frag.initialize_js('TestXBlock')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
