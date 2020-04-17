@@ -51,6 +51,7 @@ class RobboTestXBlock(XBlock):
             loader.render_django_template(
                 '/static/html/test.html',
                 context=context,
+                i18n_service=self.runtime.service(self, 'i18n')
             )
         )
         frag.add_css(self.resource_string("static/css/test.css"))
@@ -72,6 +73,7 @@ class RobboTestXBlock(XBlock):
             loader.render_django_template(
                 '/static/html/test_editor.html',
                 context=context,
+                i18n_service=self.runtime.service(self, 'i18n')
             )
         )
         frag.add_css(self.resource_string("static/css/test.css"))
