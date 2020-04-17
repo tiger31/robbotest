@@ -33,9 +33,7 @@ setup(
     ],
     install_requires=[
         'XBlock',
-    ],
-    dependency_links=[
-        'git+https://github.com/edx/xblock-utils.git@v1.1.0#egg=xblock-utils==1.1.0'
+        'pip @ https://github.com/edx/xblock-utils.git@v1.1.0'
     ],
     entry_points={
         'xblock.v1': [
