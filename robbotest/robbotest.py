@@ -46,8 +46,8 @@ class RobboTestXBlock(XBlock):
         The primary view of the RobboTestXBlock, shown to students
         when viewing courses.
         """
-        fragment = Fragment()
-        fragment.add_content(
+        frag = Fragment()
+        frag.add_content(
             loader.render_django_template(
                 '/static/html/test.html',
                 context=context,
@@ -68,7 +68,7 @@ class RobboTestXBlock(XBlock):
         when viewing courses.
         """
         frag = Fragment()
-        fragment.add_content(
+        frag.add_content(
             loader.render_django_template(
                 '/static/html/test_editor.html',
                 context=context,
