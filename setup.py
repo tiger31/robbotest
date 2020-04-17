@@ -34,7 +34,6 @@ setup(
     install_requires=[
         'XBlock',
         'pip @ https://github.com/edx/xblock-utils.git@v1.1.0',
-        'edx-i18n-tools'
     ],
     entry_points={
         'xblock.v1': [
