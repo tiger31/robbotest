@@ -4,6 +4,9 @@ import pkg_resources
 from web_fragments.fragment import Fragment
 from xblock.core import XBlock
 from xblock.fields import Integer, String, Scope
+from xblockutils.resources import ResourceLoader
+
+loader = ResourceLoader(__name__)
 
 
 class RobboTestXBlock(XBlock):
@@ -43,8 +46,13 @@ class RobboTestXBlock(XBlock):
         The primary view of the RobboTestXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/test.html")
-        frag = Fragment(html.format(self=self))
+        fragment = Fragment()
+        fragment.add_content(
+            loader.render_django_template(
+                '/static/html/test.html',
+                context=context,
+            )
+        )
         frag.add_css(self.resource_string("static/css/test.css"))
         frag.add_javascript(self.resource_string("static/js/src/vue.js"))
         frag.add_javascript(self.resource_string("static/js/src/vue-foo.min.js"))
@@ -59,8 +67,13 @@ class RobboTestXBlock(XBlock):
         The primary view of the TestXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/test_editor.html")
-        frag = Fragment(html.format(self=self))
+        frag = Fragment()
+        fragment.add_content(
+            loader.render_django_template(
+                '/static/html/test_editor.html',
+                context=context,
+            )
+        )
         frag.add_css(self.resource_string("static/css/test.css"))
         frag.add_javascript(self.resource_string("static/js/src/vue.js"))
         frag.add_javascript(self.resource_string("static/js/src/vue-foo.min.js"))
