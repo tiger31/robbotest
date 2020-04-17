@@ -3,7 +3,7 @@
 import pkg_resources
 from web_fragments.fragment import Fragment
 from xblock.core import XBlock
-from xblock.fields import Integer, Scope
+from xblock.fields import Integer, String, Scope
 
 
 class RobboTestXBlock(XBlock):
@@ -20,9 +20,14 @@ class RobboTestXBlock(XBlock):
         help="A simple counter, to show something happening",
     )
 
-    answer = Integer(
-        scope=Scope.settings,
-        default=0, help="Question answer",
+    question = String(
+        default="What is 0 + 0?", scope=Scope.content,
+        help="Question"
+    )
+
+    answer = String(
+        scope=Scope.content,
+        default="0", help="Question answer",
     )
 
 
@@ -54,13 +59,13 @@ class RobboTestXBlock(XBlock):
         The primary view of the TestXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/test.html")
+        html = self.resource_string("static/html/test_editor.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/test.css"))
         frag.add_javascript(self.resource_string("static/js/src/vue.js"))
         frag.add_javascript(self.resource_string("static/js/src/vue-foo.min.js"))
-        frag.add_javascript(self.resource_string("static/js/src/test.js"))
-        frag.initialize_js('TestXBlock')
+        frag.add_javascript(self.resource_string("static/js/src/test_editor.js"))
+        frag.initialize_js('TestXBlockEditor')
         return frag
 
     # TO-DO: change this handler to perform your own actions.  You may need more
@@ -75,6 +80,12 @@ class RobboTestXBlock(XBlock):
 
         self.count += 1
         return {"count": self.count}
+
+    @XBlock.json_handler
+    def studio_submit(self, data, suffix=''):
+        self.question = data['question'];
+        self.answer = data['answer'];
+        return data;
 
     # TO-DO: change this to create the scenarios you'd like to see in the
     # workbench while developing your XBlock.
