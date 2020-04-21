@@ -1,0 +1,3 @@
+<script src='vue-foo.min.js'></script>
+<vue-foo-hello-world>
+</vue-foo-hello-world>

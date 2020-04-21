@@ -1,0 +1,13 @@
+<script src='http://localhost:18010/static/studio/common/js/vendor/require.js'></script>
+<script>
+require.config({
+	paths: { vue: 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.runtime.min' }
+});
+require(['vue'], function(data) {
+	console.log(data)
+  window.Vue = data
+});
+</script>
+<script src='vue-foo.min.js'></script>
+<vue-foo-hello-world>
+</vue-foo-hello-world>
